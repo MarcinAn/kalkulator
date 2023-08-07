@@ -5,18 +5,18 @@ logging.basicConfig(level=logging.DEBUG)
 
 
 def is_number(number):
-    try:
-        int(number)
-        return int(number)
-    except ValueError:
+    is_number = number.isnumeric()
+    if is_number == True:
+        return float(number)
+    else:
         logging.debug(f"Podana wrtość '{number}' nie jest liczbą")
         quit()
 
 
 def addition_and_multiplication(answer):
     numbers = []
-    list_len = is_number(input("Na ilu elementach chcesz przeprowadzić działanie: "))
-    for i in range(list_len):
+    list_len = input("Na ilu elementach chcesz przeprowadzić działanie: ")
+    for i in range(int(list_len)):
         numbers.append(is_number(input(f"Podaj składnik {i+1}: ")))
     if answer == "1":
         logging.debug(f"Sumuję liczby {str(numbers)[1:-1]}")
@@ -26,7 +26,7 @@ def addition_and_multiplication(answer):
         result = 1
         for number in numbers:
             result *= number
-    print(f"Wynik to: {result}")
+    print(f"Wynik to: {round(result, 2)}")
 
 
 def subtraction_and_division(answer):
@@ -41,16 +41,16 @@ def subtraction_and_division(answer):
         else:
             logging.debug(f"Dzielę {first_number} od {second_number}")
             result = first_number / second_number
-    print(f"Wynik to: {result}")
+    print(f"Wynik to: {round(result, 2)}")
 
 
 if __name__ == "__main__":
     answer = input(
         "Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: "
     )
-    if answer == "0" or answer == "2":
+    if answer == "1" or answer == "2":
         addition_and_multiplication(answer)
-    elif answer == "1" or answer == "3":
+    elif answer == "3" or answer == "4":
         subtraction_and_division(answer)
     else:
         logging.debug("Podano niedozwoloną wartość")
