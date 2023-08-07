@@ -18,7 +18,7 @@ def addition_and_multiplication(answer):
     list_len = is_number(input("Na ilu elementach chcesz przeprowadzić działanie: "))
     for i in range(list_len):
         numbers.append(is_number(input(f"Podaj składnik {i+1}: ")))
-    if answer == "0":
+    if answer == "1":
         logging.debug(f"Sumuję liczby {str(numbers)[1:-1]}")
         result = sum(numbers)
     else:
@@ -32,7 +32,7 @@ def addition_and_multiplication(answer):
 def subtraction_and_division(answer):
     first_number = is_number(input("Podaj składnik 1: "))
     second_number = is_number(input("Podaj składnik 2: "))
-    if answer == "1":
+    if answer == "2":
         logging.debug(f"Odejmuję {first_number} od {second_number}")
         result = first_number - second_number
     else:
@@ -46,7 +46,7 @@ def subtraction_and_division(answer):
 
 if __name__ == "__main__":
     answer = input(
-        "Podaj działanie, posługując się odpowiednią liczbą: 0 Dodawanie, 1 Odejmowanie, 2 Mnożenie, 3 Dzielenie: "
+        "Podaj działanie, posługując się odpowiednią liczbą: 1 Dodawanie, 2 Odejmowanie, 3 Mnożenie, 4 Dzielenie: "
     )
     if answer == "0" or answer == "2":
         addition_and_multiplication(answer)
