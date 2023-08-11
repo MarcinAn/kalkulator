@@ -21,11 +21,12 @@ def addition_and_multiplication(answer):
     for i in range(list_len):
         number = check_number(i + 1)
         numbers.append(number)
+    numbers_to_show = ", ".join(map(str, numbers))
     if answer == "1":
-        logging.debug(f"Sumuję liczby {str(numbers)[1:-1]}")
+        logging.debug(f"Sumuję liczby {numbers_to_show}")
         result = round(sum(numbers), 2)
     else:
-        logging.debug(f"Mnożę liczby {str(numbers)[1:-1]}")
+        logging.debug(f"Mnożę liczby {numbers_to_show}")
         result = 1
         for number in numbers:
             result *= number
