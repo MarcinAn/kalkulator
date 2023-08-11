@@ -4,13 +4,14 @@ import logging
 logging.basicConfig(level=logging.DEBUG)
 
 
-def is_number(number):
-    is_number = number.isnumeric()
-    if is_number:
-        return float(number)
-    else:
-        logging.info("Wprowadzona wartość nie jest liczbą")
-        return 0
+def check_number(input_number):
+    number = input(f"Podaj składnik {input_number}: ")
+    while not number.isnumeric():
+        logging.debug(
+            f"Wprowadzona wartość {number} nie jest liczbą. Wprowadż wartość ponownie."
+        )
+        number = input(f"Podaj składnik {input_number}: ")
+    return float(number)
 
 
 def addition_and_multiplication(answer):
@@ -18,7 +19,8 @@ def addition_and_multiplication(answer):
     numbers = []
     list_len = int(input("Na ilu elementach chcesz przeprowadzić działanie: "))
     for i in range(list_len):
-        numbers.append(is_number(input(f"Podaj składnik {i+1}: ")))
+        number = check_number(i + 1)
+        numbers.append(number)
     if answer == "1":
         logging.debug(f"Sumuję liczby {str(numbers)[1:-1]}")
         result = round(sum(numbers), 2)
@@ -33,8 +35,8 @@ def addition_and_multiplication(answer):
 
 def subtraction_and_division(answer):
     result = None
-    first_number = is_number(input("Podaj składnik 1: "))
-    second_number = is_number(input("Podaj składnik 2: "))
+    first_number = check_number(1)
+    second_number = check_number(2)
     if answer == "2":
         logging.debug(f"Odejmuję {first_number} od {second_number}")
         result = round(first_number - second_number, 2)
